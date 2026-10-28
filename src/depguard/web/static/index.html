@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>DePGuard | Security Desk</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="DePGuard home"><span class="brand-mark">D</span><span>DePGuard</span></a>
+    <div class="top-actions"><span id="identity" class="identity">Not signed in</span><button id="logout" class="quiet-button hidden" type="button">Sign out</button></div>
+  </header>
+  <main>
+    <section id="login-view" class="login-layout">
+      <div class="login-copy">
+        <p class="eyebrow">APPLICATION SECURITY · PRIVATE WORKSPACE</p>
+        <h1>Security<br>desk</h1>
+        <p class="intro">Review dependency exposure and web configuration findings in one place.</p>
+      </div>
+      <form id="login-form" class="login-form">
+        <h2>Sign in</h2>
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" required minlength="3">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required minlength="12">
+        <button class="primary-button" type="submit">Continue</button>
+        <p id="login-message" class="message" role="status"></p>
+        <button id="register-toggle" class="text-button" type="button">Create a standard account</button>
+      </form>
+      <form id="register-form" class="login-form hidden">
+        <h2>Create account</h2>
+        <label for="register-username">Username</label>
+        <input id="register-username" autocomplete="username" required minlength="3" maxlength="80">
+        <label for="register-email">Email</label>
+        <input id="register-email" type="email" autocomplete="email" required maxlength="254">
+        <label for="register-password">Password</label>
+        <input id="register-password" type="password" autocomplete="new-password" required minlength="12">
+        <button class="primary-button" type="submit">Register</button>
+        <p id="register-message" class="message" role="status"></p>
+        <button id="login-toggle" class="text-button" type="button">Back to sign in</button>
+      </form>
+    </section>
+    <section id="workspace-view" class="workspace hidden">
+      <div class="page-heading"><div><p class="eyebrow">ASSESSMENTS</p><h1>Scan history</h1></div><button id="refresh" class="quiet-button" type="button">Refresh</button></div>
+      <section class="new-scan" aria-labelledby="new-scan-title">
+        <div class="section-heading"><h2 id="new-scan-title">New URL scan</h2><span class="scope-note">Authorized targets only</span></div>
+        <form id="scan-form" class="scan-form">
+          <label class="url-field" for="target-url">Target URL<input id="target-url" type="url" placeholder="https://app.example.org" required></label>
+          <label class="profile-field" for="profile">Profile<select id="profile"><option>quick</option><option>standard</option><option>deep</option></select></label>
+          <button class="primary-button" type="submit">Start scan</button>
+          <label class="authorization"><input id="authorization" type="checkbox" required><span>I am authorized to scan this target.</span></label>
+        </form>
+        <p id="scan-message" class="message" role="status"></p>
+      </section>
+      <section class="results-section" aria-labelledby="history-title">
+        <div class="section-heading"><h2 id="history-title">Recent scans</h2><span id="scan-count" class="count">0 scans</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Target</th><th>Started</th><th>Status</th><th>Risk</th><th>Findings</th></tr></thead><tbody id="scan-rows"><tr><td colspan="5" class="empty">Sign in to view scan history.</td></tr></tbody></table></div>
+      </section>
+      <section id="finding-view" class="finding-view hidden" aria-live="polite"></section>
+    </section>
+  </main>
+  <footer><span>DePGuard</span><span>Defensive assessment workspace</span></footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.env
+data/
+reports/
+depguard-report.pdf
+depguard-sbom.json
+depguard.db
+depguard-scan-*.json
+depguard-scan-*.pdf

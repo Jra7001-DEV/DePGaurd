@@ -1,0 +1,18 @@
+services:
+  depguard:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DEPGUARD_DATABASE_URL: sqlite:////app/data/depguard.db
+      DEPGUARD_SECRET_KEY: ${DEPGUARD_SECRET_KEY:?Set DEPGUARD_SECRET_KEY in the environment}
+      DEPGUARD_COOKIE_SECURE: "false"
+      DEPGUARD_ALLOW_PRIVATE_TARGETS: ${DEPGUARD_ALLOW_PRIVATE_TARGETS:-false}
+    volumes:
+      - depguard-data:/app/data
+      - depguard-reports:/app/reports
+    restart: unless-stopped
+
+volumes:
+  depguard-data:
+  depguard-reports:
